@@ -1,0 +1,33 @@
+<%- include('partials/header') -%>
+
+  <h1 class="text-4xl mb-4">Welcome <%= user.nickname %></h1>
+
+  <% if (user.picture) { %>
+    <img class="block py-3" src="<%= user.picture %>" width="300">
+  <% } %>
+  
+  <p class="py-3">
+    This is the content of <code class="bg-gray-200">req.user</code>.<br>
+    <strong>Note:</strong> <code class="bg-gray-200">_raw</code> and <code class="bg-gray-200">_json</code> properties have been omitted.
+  </p>
+
+  <pre class="block bg-gray-300 p-4 text-sm overflow-scroll"><%= userProfile %></pre>
+  <form method="post" action="/user/password" oninput='confirmPassword.setCustomValidity(confirmPassword.value != password.value ? "Passwords do not match." : "")'>
+    <div class="mb-3 row">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input required type="password" class="form-control" id="password" name="password">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+      <div class="col-sm-10">
+        <input required type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Change Password</button>
+    </div>
+  </form>
+  
+<%- include('partials/footer') -%>
